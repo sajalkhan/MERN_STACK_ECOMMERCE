@@ -6,7 +6,7 @@ export const getAllproducts = () => async dispatch => {
 
     try {
         const res = await axios.get('/api/products');
-        console.log('get data -- ', res.data);
+        //console.log('get data -- ', res.data);
         dispatch({
             type: GET_PRODUCTS,
             payload: res.data
@@ -40,7 +40,7 @@ export const getProductDetails = (productId) => async dispatch => {
 export const saveProduct = (data) => async dispatch => {
 
     try {
-
+        let res = null;
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('price', data.price);
@@ -50,9 +50,9 @@ export const saveProduct = (data) => async dispatch => {
         formData.append('description', data.description);
         formData.append('image', data.image.name);
         formData.append('image', data.image, data.image.name);
-        //console.log(data.image, '  ',data.image.name);
-
-        const res = await axios.post('/api/products', formData);
+        
+        if (!data.id) res = await axios.post('/api/products', formData);
+        else res = await axios.put(`api/products/${data.id}`, formData);
 
         dispatch({
             type: SAVE_PRODUCT,
@@ -74,7 +74,7 @@ export const saveProduct = (data) => async dispatch => {
 
         dispatch({
             type: SAVE_PRODUCT_ERROR,
-            payload: { msg: error.response.data.msg, status: error.response.status }
+            payload: { msg: 'no data found' }
         });
     }
 }

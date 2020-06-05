@@ -8,7 +8,7 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
     const [modalVisible, setModalVisible] = useState(false);
 
     const [formData, setFormData] = useState({
-        id:'',
+        id: '',
         name: '',
         price: '',
         image: '',
@@ -29,6 +29,10 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
         formData.brand = product.brand;
         formData.category = product.category;
         formData.brand = product.brand;
+        formData.image = product.image;
+        formData.inStock = product.inStock;
+        formData.description = product.description;
+        //console.log('test -- ',formData);
 
         setFormData({ ...formData });
     }
@@ -53,7 +57,7 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
 
     useEffect(() => {
         getAllproducts();
-    },);
+    });
 
     return <div className="content content-margined">
 
@@ -73,52 +77,52 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
                             <label htmlFor="name">
                                 Name
                             </label>
-                            <input type="text" name="name" required value={name} id="name" onChange={(e) => handleFormData(e)}>
+                            <input type="text" name="name" required value={name || ''} id="name" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
                         <li>
                             <label htmlFor="price">
                                 Price
                             </label>
-                            <input type="text" name="price" required value={price} id="price" onChange={(e) => handleFormData(e)}>
+                            <input type="text" name="price" required value={price || ''} id="price" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
-                        <li>
-                            <label htmlFor="image">
-                                Image
+                            <li>
+                                <label htmlFor="image">
+                                    Image
                             </label>
-                            <input type="file" accept=".jpg, .png, .jpeg" required onChange={onFileChange} >
-                            </input>
-                        </li>
+                                <input type="file" accept=".jpg, .png, .jpeg" required onChange={onFileChange} >
+                                </input>
+                            </li>
                         <li>
                             <label htmlFor="brand">
                                 Brand
                             </label>
-                            <input type="text" name="brand" required value={brand} id="brand" onChange={(e) => handleFormData(e)}>
+                            <input type="text" name="brand" required value={brand || ''} id="brand" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
                         <li>
                             <label htmlFor="inStock">
                                 CountInStock
                             </label>
-                            <input type="text" name="inStock" required value={inStock} id="inStock" onChange={(e) => handleFormData(e)}>
+                            <input type="text" name="inStock" required value={inStock || ''} id="inStock" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
                         <li>
                             <label htmlFor="name">
                                 Category
                             </label>
-                            <input type="text" name="category" required value={category} id="category" onChange={(e) => handleFormData(e)}>
+                            <input type="text" name="category" required value={category || ''} id="category" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
                         <li>
                             <label htmlFor="description">
                                 Description
                             </label>
-                            <textarea name="description" required value={description} id="description" onChange={(e) => handleFormData(e)}></textarea>
+                            <textarea name="description" required value={description || ''} id="description" onChange={(e) => handleFormData(e)}></textarea>
                         </li>
                         <li>
-                            <button type="submit" className="button primary">{!products._id || !loading ? "Create" : "Update"}</button>
+                            <button type="submit" className="button primary">{!id ? "Create" : "Update"}</button>
                         </li>
                         <li>
                             <button type="button" onClick={() => setModalVisible(false)} className="button secondary">Back</button>
@@ -130,7 +134,7 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
 
 
         {
-            !modalVisible  &&
+            !modalVisible &&
             <div className="product-list">
 
                 <table className="table">
@@ -152,8 +156,8 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
                             <td>{product.category}</td>
                             <td>{product.brand}</td>
                             <td>
-                                {/* <button className="button" onClick={() => openModal(product)} >Edit</button>
-                                {' '} */}
+                                <button className="button" onClick={() => openModal(product)} >Edit</button>
+                                {' '}
                                 <button className="button" onClick={() => deleteHandler(product)} >Delete</button>
                             </td>
                         </tr>))}
@@ -172,4 +176,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getAllproducts, saveProduct, deleteProdcut})(CreateProductsScreen);
+export default connect(mapStateToProps, { getAllproducts, saveProduct, deleteProdcut })(CreateProductsScreen);

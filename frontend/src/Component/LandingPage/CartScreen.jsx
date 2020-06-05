@@ -12,7 +12,7 @@ const CartScreen = ({ addToCart, removeFromCart, cart:{cartItems}, match, locati
 
     useEffect(() => {
         if (productId) addToCart(productId, Qty);
-    }, [productId, Qty]);
+    }, [productId, Qty, addToCart]);
 
     const removeFromCartHandler = (productId) => {
         removeFromCart(productId);
