@@ -8,7 +8,7 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
     const [modalVisible, setModalVisible] = useState(false);
 
     const [formData, setFormData] = useState({
-        id: '',
+        id:'',
         name: '',
         price: '',
         image: '',
@@ -32,8 +32,7 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
         formData.image = product.image;
         formData.inStock = product.inStock;
         formData.description = product.description;
-        //console.log('test -- ',formData);
-
+        
         setFormData({ ...formData });
     }
 
@@ -87,13 +86,13 @@ function CreateProductsScreen({ getAllproducts, saveProduct, deleteProdcut, myPr
                             <input type="text" name="price" required value={price || ''} id="price" onChange={(e) => handleFormData(e)}>
                             </input>
                         </li>
-                            <li>
-                                <label htmlFor="image">
-                                    Image
+                        <li>
+                            <label htmlFor="image">
+                                Image
                             </label>
-                                <input type="file" accept=".jpg, .png, .jpeg" required onChange={onFileChange} >
-                                </input>
-                            </li>
+                            <input type="file" accept=".jpg, .png, .jpeg" required onChange={onFileChange} >
+                            </input>
+                        </li>
                         <li>
                             <label htmlFor="brand">
                                 Brand

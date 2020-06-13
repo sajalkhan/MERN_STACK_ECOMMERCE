@@ -17,13 +17,13 @@ const HomeScreen = ({ getAllproducts, All_Products: {products, loading }}) => {
             {
                products === null || !loading ? <Spinner /> :
                products.map(product => (
-                        <li key={product.id}>
+                        <li key={product._id}>
                             <div className="product">
-                                <Link to={'/products/' + product.id} >
+                                <Link to={'/products/' + product._id} >
                                     <img className="product-img" src={process.env.PUBLIC_URL+'/images/'+product.image} alt="product" />
                                 </Link>
                                 <div className="product-name">
-                                    <Link to={'/products/' + product.id}>{product.name}</Link>
+                                    <Link to={'/products/' + product._id}>{product.name}</Link>
                                 </div>
                                 <div className="product-brand">{product.brand}</div>
                                 <div className="product-price">${product.price}</div>

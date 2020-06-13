@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://soharub:Z1QeY11hn5FTwC1f@cluster0-et8vd.mongodb.net/Assignment?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://soharub:Z1QeY11hn5FTwC1f@cluster0-et8vd.mongodb.net/Assignment?retryWrites=true&w=majority",
+    "JwtSecret": "mySecrettoken"
 }

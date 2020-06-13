@@ -1,7 +1,9 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_PRODUCTS_ERROR } from '../Action/type'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_PRODUCTS_ERROR, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } from '../Action/type'
 
 const initialState = {
-    cartItems: []
+    cartItems: [],
+    shipping: {}, 
+    payment: {}
 }
 const cartReducer = (state = initialState, action) => {
     const { type, payload } = action;
@@ -29,6 +31,10 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case CART_SAVE_SHIPPING:
+            return { ...state, shipping: action.payload };
+        case CART_SAVE_PAYMENT:
+            return { ...state, payment: action.payload };
         default:
             return state;
     }

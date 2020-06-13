@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 //@get current porduct details
 router.get("/:id", async (req, res) => {
 
-    const product = await Product.findOne({ id: req.params.id });
+    const product = await Product.findOne({ _id: req.params.id });
     if (product) {
         res.send(product);
     } else {
@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-//@create or update product
+//@create a new product
 router.post("/", fileUpload.single('image'), async (req, res) => {
 
     const product = new Product({

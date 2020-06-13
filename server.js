@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const config = require('config');
 
 const connectDB = require('./Config/db')
 
@@ -15,12 +16,23 @@ connectDB();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // Define Routes
 app.use('/api/users', require('./Routes/user'));
+app.use('/api/orders', require('./Routes/Order'));
 app.use('/api/products', require('./Routes/Product'));
 const PORT = process.env.PORT || 8080;
 
-if(process.env.NODE_ENV === 'production')
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' }); // here will pass an object to env so it will understand where the configuration file is located
+const environment = process.env.NODE_ENV;
+
+if(process.env.NODE_ENV === environment)
 {
     app.use(express.static('frontend/build'));
     

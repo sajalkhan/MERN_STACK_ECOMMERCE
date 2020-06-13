@@ -5,7 +5,7 @@ import { addToCart, removeFromCart } from '../../Action/cartAction';
 //Redux 
 import { connect } from 'react-redux';
 
-const CartScreen = ({ addToCart, removeFromCart, cart:{cartItems}, match, location }) => {
+const CartScreen = ({ addToCart, removeFromCart, cart: { cartItems }, match, location }) => {
 
     const productId = match.params.id;
     const Qty = location.search ? Number(location.search.split("=")[1]) : 1;
@@ -64,7 +64,7 @@ const CartScreen = ({ addToCart, removeFromCart, cart:{cartItems}, match, locati
             </div>
             <div className="cart-action">
                 <h3>
-                    Subtotal ( {cartItems.reduce((a, c) => a + c.quentity*1, 0)} items) : ${cartItems.reduce((a, c) => a + c.price * c.quentity, 0)}
+                    Subtotal ( {cartItems.reduce((a, c) => a + c.quentity * 1, 0)} items) : ${cartItems.reduce((a, c) => a + c.price * c.quentity, 0)}
                 </h3>
                 <button className="button primary full-width" disabled={cartItems.length === 0}> Proceed to Checkout </button>
             </div>
